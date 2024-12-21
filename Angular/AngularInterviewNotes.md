@@ -8,7 +8,7 @@
 
 ## Styling SCSS
 
-## How JS works
+## How javascript works underneath the hooks
 
 ## Change Detection
 
@@ -51,6 +51,14 @@ When to Avoid a Monorepo
 ## Ionic Need To Know
 
 ## Service Worker
+
+## Standalone
+
+
+Enables treeshaking so the final build output only includes the code necessary to run your app which reduces overall build size.
+Avoids the use of NgModules to streamline the development experience and make your code easier to understand.
+Allows developers to also use newer Angular features such as ESBuild.
+
 
 ## IndexDB
 

@@ -1,0 +1,7 @@
+{
+  "name": "IonicExampleApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
