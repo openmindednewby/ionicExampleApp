@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonFab, IonIcon, IonButton, IonImg } from '@ionic/angular/standalone';
-import { CameraServiceService } from '../services/native/camera-service/camera-service.service';
+import { CameraServiceService } from '../../services/native/camera-service/camera-service.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
