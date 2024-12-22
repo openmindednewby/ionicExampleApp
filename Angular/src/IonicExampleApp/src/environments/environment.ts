@@ -4,6 +4,7 @@
 
 import { CameraResultType, CameraSource } from "@capacitor/camera";
 import { Environment } from "./interfaces";
+import { Endpoints } from "./endpoints";
 
 export const environment: Environment = {
   production: false,

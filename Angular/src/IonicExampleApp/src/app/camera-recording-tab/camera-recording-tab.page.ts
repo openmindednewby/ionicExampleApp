@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonFab, IonIcon, IonButton } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonFab, IonIcon, IonButton, IonImg } from '@ionic/angular/standalone';
 import { CameraServiceService } from '../services/native/camera-service/camera-service.service';
-
-interface UserPhoto {
-  filepath: string;
-  webviewPath?: string;
-}
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cameraRecordingTab',
   templateUrl: 'camera-recording-tab.page.html',
   styleUrls: ['camera-recording-tab.page.scss'],
-  imports: [IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [CommonModule, IonImg, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class Tab1Page {
-  public currentPhoto: UserPhoto | undefined;
+  public currentPhotoWebviewPath: string | undefined;
 
-  constructor(private cameraServiceService: CameraServiceService) {}
+  constructor(private cameraServiceService: CameraServiceService) { }
 
-  public takePicture(): void {
-    const currentPhoto = this.cameraServiceService.takePhoto();
+  public async takePicture(): Promise<void> {
+    const currentPhoto = await this.cameraServiceService.takePhoto();
+    this.currentPhotoWebviewPath = currentPhoto.webPath;
   }
 
 

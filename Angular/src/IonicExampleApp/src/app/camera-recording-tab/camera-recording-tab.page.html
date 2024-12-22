@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Camera
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,17 +9,19 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Camera Recording</ion-title>
+      <ion-title size="large">Camera</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <ion-fab vertical="center" horizontal="center" slot="fixed">
-      <ion-button size="large" (click)="takePicture()">
-        <ion-icon slot="start" name="camera"></ion-icon>
-        Take a picture
-      </ion-button>
-    </ion-fab>
-  </ion-content>
+  <ion-fab vertical="center" horizontal="center" slot="fixed">
+    <ion-button size="large" (click)="takePicture()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Take a picture
+    </ion-button>
+  </ion-fab>
+
+  <ion-img [src]="currentPhotoWebviewPath"></ion-img>
+  <pre>{{ currentPhotoWebviewPath | json }}</pre>
+
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

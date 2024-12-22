@@ -1,4 +1,5 @@
 import { CameraResultType, CameraSource } from "@capacitor/camera";
+import { Endpoints } from "./endpoints";
 
 
 export interface Environment {

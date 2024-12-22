@@ -1,4 +1,4 @@
-enum Endpoints {
+export enum Endpoints {
   // Example
   example = 'example',
 }
