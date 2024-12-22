@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Tab1Page } from './cameraRecordingTab.page';
+import { Tab1Page } from './camera-recording-tab.page';
 
 describe('Tab1Page', () => {
   let component: Tab1Page;
