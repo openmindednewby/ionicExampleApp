@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Preferences } from '@capacitor/preferences';
+import { Camera, Photo } from '@capacitor/camera';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +12,9 @@ export class CameraServiceService {
   public async takePhoto(): Promise<Photo> {
     // Take a photo
     return await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
+      resultType: environment.nativeServices.camera.resultType,
+      source: environment.nativeServices.camera.source,
+      quality: environment.nativeServices.camera.quality
     });
   }
 }
