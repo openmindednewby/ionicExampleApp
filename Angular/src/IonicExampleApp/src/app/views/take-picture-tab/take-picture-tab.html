@@ -13,13 +13,19 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-fab vertical="center" horizontal="center" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-button size="large" (click)="takePicture()">
-      <ion-icon slot="start" name="camera"></ion-icon>
+      <ion-icon aria-hidden="true" name="triangle"></ion-icon>
+      <ion-icon name="camera-outline"></ion-icon>
+      <ion-icon name="camera-reverse-outline"></ion-icon>
+      <ion-icon name="camera-reverse-outline"></ion-icon>
+      <ion-icon name="triangle"></ion-icon>
+      <ion-icon name="camera"></ion-icon>
+      <!-- <ion-icon slot="start" name="camera"></ion-icon> -->
       Take a picture
     </ion-button>
     <ion-button [disabled]="isStorePictureDisabled()" size="large" (click)="storePicture()">
-      <ion-icon slot="start" name="camera"></ion-icon>
+      <ion-icon slot="start" name="triangle"></ion-icon>
       Store Picture
     </ion-button>
   </ion-fab>
