@@ -34,6 +34,7 @@
     "@ionic/angular": "^8.0.0",
     "@ionic/pwa-elements": "^3.3.0",
     "ionicons": "^7.4.0",
+    "ngx-indexed-db": "^19.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

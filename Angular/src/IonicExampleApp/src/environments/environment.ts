@@ -10,7 +10,7 @@ export const environment: Environment = {
   production: false,
   nativeServices: {
     camera: {
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt,
       quality: 100
     }
