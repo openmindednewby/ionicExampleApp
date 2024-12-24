@@ -8,12 +8,12 @@ import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 import dataUrlToBlob from 'src/app/utils/mappers/dataUrlToBlob';
 
 @Component({
-  selector: 'app-cameraRecordingTab',
-  templateUrl: 'camera-recording-tab.page.html',
-  styleUrls: ['camera-recording-tab.page.scss'],
+  selector: 'appTakePictureTab',
+  templateUrl: 'take-picture-tab.html',
+  styleUrls: ['take-picture-tab.scss'],
   imports: [CommonModule, IonImg, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
 })
-export class Tab1Page {
+export class TakePictureTab {
   public currentPhoto = signal<Photo | undefined>(undefined);
   public isStorePictureDisabled = computed(() => !isValueDefined(this.currentPhoto()?.dataUrl));
 
