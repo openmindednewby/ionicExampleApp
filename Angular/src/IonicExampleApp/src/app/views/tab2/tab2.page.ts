@@ -12,14 +12,10 @@ import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 })
 export class Tab2Page {
   private currentPhoto = signal<Blob | undefined>(undefined);
-
   public photoURL = computed(() => {
-    console.log('11');
     const photo = this.currentPhoto();
-    if (isValueDefined(photo)) {
-      return URL.createObjectURL(photo!);
-    }
-    return '';
+    if (isValueDefined(photo)) return URL.createObjectURL(photo!);
+    return;
   });
 
   constructor(
@@ -29,6 +25,5 @@ export class Tab2Page {
   public async getImage(id: number): Promise<void> {
     const photo = await this.indexedDbService.getItem<Blob>(id, ObjectStoreNames.Pictures);
     this.currentPhoto.set(photo);
-    console.log('Current photo:', this.currentPhoto);
   }
 }
