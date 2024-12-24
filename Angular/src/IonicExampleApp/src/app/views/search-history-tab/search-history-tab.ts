@@ -3,11 +3,11 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  selector: 'appSearchHistoryTab',
+  templateUrl: 'search-history-tab.html',
+  styleUrls: ['search-history-tab.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
 })
-export class Tab3Page {
-  constructor() {}
+export class SearchHistoryTab {
+  constructor() { }
 }
