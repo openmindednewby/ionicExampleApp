@@ -13,12 +13,6 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-button size="large" (click)="getImage(1)">
-      <ion-icon class="icon" name="search" />
-      Get a picture
-    </ion-button>
-  </ion-fab>
   <div class="flex-container">
     <ion-card class="card" *ngIf="showCard()">
       <div style="position: relative;">
@@ -27,4 +21,17 @@
       </div>
     </ion-card>
   </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-input type="number" label="Enter Picture ID" label-placement="floating" placeholder="Enter ID" (ngModelChange)="onInputIdChange($event)" [ngModel]="pictureId()"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-button [disabled]="isGetImageDisabled()" size="large" (click)="getImage()">
+      <ion-icon class="icon" name="search" />
+      Get a picture
+    </ion-button>
+  </ion-fab>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonFab, IonIcon, IonButton, IonImg } from '@ionic/angular/standalone';
 import { CameraServiceService } from '../../services/native/camera-service/camera-service.service';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,7 @@ import dataUrlToBlob from 'src/app/utils/mappers/dataUrlToBlob';
   selector: 'appTakePictureTab',
   templateUrl: 'take-picture-tab.html',
   styleUrls: ['take-picture-tab.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, IonImg, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class TakePictureTab {
