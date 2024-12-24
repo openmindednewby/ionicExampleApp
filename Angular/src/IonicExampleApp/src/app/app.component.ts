@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 //https://ionic.io/ionicons
-import { triangle, ellipse, square, camera, image } from 'ionicons/icons';
+import { triangle, ellipse, square, camera, image, save, search } from 'ionicons/icons';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,6 +11,6 @@ import { triangle, ellipse, square, camera, image } from 'ionicons/icons';
 })
 export class AppComponent {
   constructor() {
-    addIcons({ triangle, ellipse, square, camera, image });
+    addIcons({ triangle, ellipse, square, camera, image, save, search });
   }
 }

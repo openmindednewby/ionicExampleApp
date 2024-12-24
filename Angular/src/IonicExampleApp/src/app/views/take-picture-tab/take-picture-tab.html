@@ -15,18 +15,13 @@
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-button size="large" (click)="takePicture()">
-      <ion-icon aria-hidden="true" name="triangle"></ion-icon>
-      <ion-icon name="camera-outline"></ion-icon>
-      <ion-icon name="camera-reverse-outline"></ion-icon>
-      <ion-icon name="camera-reverse-outline"></ion-icon>
-      <ion-icon name="triangle"></ion-icon>
-      <ion-icon name="camera"></ion-icon>
+      <ion-icon class="icon" name="camera"></ion-icon>
       <!-- <ion-icon slot="start" name="camera"></ion-icon> -->
       Take a picture
     </ion-button>
     <ion-button [disabled]="isStorePictureDisabled()" size="large" (click)="storePicture()">
-      <ion-icon slot="start" name="triangle"></ion-icon>
-      Store Picture
+      <ion-icon class="icon" name="save"></ion-icon>
+      Store Picture To IndexedDB
     </ion-button>
   </ion-fab>
   <!-- <ion-card>
