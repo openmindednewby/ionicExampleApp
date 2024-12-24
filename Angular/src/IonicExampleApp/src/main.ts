@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import { DBConfig } from './../node_modules/ngx-indexed-db/lib/ngx-indexed-db.meta.d';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
