@@ -15,21 +15,16 @@
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-button size="large" (click)="getImage(1)">
-      <ion-icon class="icon" name="search"></ion-icon>
+      <ion-icon class="icon" name="search" />
       Get a picture
     </ion-button>
   </ion-fab>
-  <!-- <ion-card>
-    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
-  </ion-card> -->
-  <ion-img *ngIf="photoURL" [src]="photoURL()"></ion-img>
-
+  <div class="flex-container">
+    <ion-card class="card" *ngIf="showCard()">
+      <div style="position: relative;">
+        <ion-icon name="download" (click)="downloadPicture()" class="download-button" />
+        <img alt="Selected picture" [src]="photoURL()" />
+      </div>
+    </ion-card>
+  </div>
 </ion-content>
