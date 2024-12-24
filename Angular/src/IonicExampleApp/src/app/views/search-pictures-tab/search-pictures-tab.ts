@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
+  selector: 'appSearchPicturesTab',
+  templateUrl: 'search-pictures-tab.html',
+  styleUrls: ['search-pictures-tab.scss'],
   imports: [CommonModule, IonButton, IonFab, IonImg, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
 })
-export class Tab2Page {
+export class SearchPicturesTab {
   private currentPhoto = signal<Blob | undefined>(undefined);
   public photoURL = computed(() => {
     const photo = this.currentPhoto();
