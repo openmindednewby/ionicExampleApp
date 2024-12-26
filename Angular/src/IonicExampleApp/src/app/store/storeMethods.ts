@@ -1,15 +1,4 @@
-import { DeepSignal } from '@ngrx/signals';
-import { ThemeSlice, themeSliceMethods } from './slices/themeSlice';
-import { WritableSignal } from '@angular/core';
-import { STATE_SOURCE } from '@ngrx/signals/src/state-source';
-
-
-// export interface Store {
-//     themeSlice: DeepSignal<ThemeSlice>;
-//     [STATE_SOURCE]: WritableSignal<{
-//         themeSlice: ThemeSlice;
-//     }>
-// }
+import { themeSliceMethods } from './slices/themeSlice';
 
 export function getStoreMethods(store: any) {
   return { ...themeSliceMethods(store) };

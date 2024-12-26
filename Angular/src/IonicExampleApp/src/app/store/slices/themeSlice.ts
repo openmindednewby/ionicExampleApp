@@ -1,3 +1,4 @@
+import { computed } from '@angular/core';
 import { patchState } from '@ngrx/signals';
 
 export interface ThemeSlice {
@@ -18,3 +19,11 @@ export function themeSliceMethods(store: any) {
     updateIsInvertedColor: (isInvertedColor: boolean) => setIsInvertedColor(store, isInvertedColor),
   };
 }
+
+export function themeSliceComputed(slices: any) {
+  return {
+    isInvertedColor: computed(() => slices.themeSlice().isInvertedColor),
+  };
+}
+
+
