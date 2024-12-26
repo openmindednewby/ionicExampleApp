@@ -16,6 +16,6 @@ export class SearchHistoryTab {
 
   // Assuming `tasks` is a state property
   constructor() {
-    console.log('isInvertedColor', this.isInvertedColor);
+
   }
 }
