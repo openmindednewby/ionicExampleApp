@@ -1,7 +1,8 @@
 import { ThemeSlice } from './slices/themeSlice';
-import { signalStore, withMethods, withState } from '@ngrx/signals';
+import { signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { getStoreMethods } from './storeMethods';
 import { STATE_SOURCE } from '@ngrx/signals/src/state-source';
+import { computed } from '@angular/core';
 
 interface AppState {
   themeSlice: ThemeSlice;
@@ -14,12 +15,15 @@ const initialState: AppState = {
 }
 
 
-export const appSignalStore = signalStore(
+const appSignalStore = signalStore(
   { providedIn: 'root' },
   withState<AppState>(initialState),
   withMethods((store) => ({
-    getThemeSlice: () => store[STATE_SOURCE]().themeSlice, // Correct access to the state
-    ...getStoreMethods(store) }))
+    ...getStoreMethods(store) })
+  ),
+  withComputed((slices) => ({
+    isInvertedColor: computed(() => slices.themeSlice().isInvertedColor),
+  }))
 );
 
 

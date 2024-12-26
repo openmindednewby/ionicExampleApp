@@ -15,6 +15,6 @@ function setIsInvertedColor(store: any, isInvertedColor: boolean) {
 
 export function themeSliceMethods(store: any) {
   return {
-    setIsInvertedColor: (isInvertedColor: boolean) => setIsInvertedColor(store, isInvertedColor),
+    updateIsInvertedColor: (isInvertedColor: boolean) => setIsInvertedColor(store, isInvertedColor),
   };
 }
