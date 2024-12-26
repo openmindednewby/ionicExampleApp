@@ -1,11 +1,10 @@
 import { patchState } from '@ngrx/signals';
-import { Store } from '../storeMethods';
 
 export interface ThemeSlice {
   isInvertedColor: boolean;
 }
 
-function setIsInvertedColor(store: Store, isInvertedColor: boolean) {
+function setIsInvertedColor(store: any, isInvertedColor: boolean) {
   patchState(store, {
     themeSlice: {
       ...store.themeSlice(),
@@ -14,7 +13,7 @@ function setIsInvertedColor(store: Store, isInvertedColor: boolean) {
   });
 }
 
-export function themeSliceMethods(store: Store) {
+export function themeSliceMethods(store: any) {
   return {
     setIsInvertedColor: (isInvertedColor: boolean) => setIsInvertedColor(store, isInvertedColor),
   };
