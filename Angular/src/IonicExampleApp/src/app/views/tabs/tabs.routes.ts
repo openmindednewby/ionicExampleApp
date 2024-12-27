@@ -19,7 +19,7 @@ export const routes: Routes = [
       {
         path: 'tab3',
         loadComponent: () =>
-          import('./components/search-history-tab/search-history-tab').then((m) => m.SearchHistoryTab),
+          import('./components/settings-tab/settings-tab').then((m) => m.SettingsTab),
       },
       {
         path: '',

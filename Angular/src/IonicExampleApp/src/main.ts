@@ -12,19 +12,6 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 // Call the element loader before the bootstrapModule/bootstrapApplication call
 defineCustomElements(window);
 
-const dbConfig: DBConfig = {
-  name: 'MyDb',
-  version: 1,
-  objectStoresMeta: [{
-    store: 'pictures',
-    storeConfig: { keyPath: 'id', autoIncrement: true },
-    storeSchema: [
-      { name: 'name', keypath: 'name', options: { unique: false } },
-      { name: 'email', keypath: 'email', options: { unique: true } }
-    ]
-  }]
-};
-
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -3,20 +3,20 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/a
 import appSignalStore from 'src/app/store/appSignalStore';
 
 @Component({
-  selector: 'appSearchHistoryTab',
-  templateUrl: 'search-history-tab.html',
-  styleUrls: ['search-history-tab.scss'],
+  selector: 'appSettingsTab',
+  templateUrl: 'settings-tab.html',
+  styleUrls: ['settings-tab.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [appSignalStore],
   imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent],
 })
-export class SearchHistoryTab {
+export class SettingsTab {
   private readonly store = inject(appSignalStore);
   public isInvertedColor = computed(() => this.store.isInvertedColor());
   public titleColor = signal('color: black');
 
   constructor() { }
-// Method to update the header color
+  // Method to update the header color
   setHeaderColor(color: string): void {
     this.titleColor.set(color);
   }

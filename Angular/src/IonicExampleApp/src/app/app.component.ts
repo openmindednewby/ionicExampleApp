@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 //https://ionic.io/ionicons
-import { triangle, ellipse, square, camera, image, save, search, download, listCircle } from 'ionicons/icons';
+import { triangle, ellipse, square, camera, image, save, search, download, listCircle, cog } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
   private deferredPrompt?: any;
 
   constructor() {
-    addIcons({ triangle, ellipse, square, camera, image, save, search, download, listCircle });
+    addIcons({ triangle, ellipse, square, camera, image, save, search, download, listCircle, cog });
     //need to combe back and fix this implementation
     this.initializeBeforeInstallPromptListener();
 

@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchHistoryTab } from './search-history-tab';
+import { SettingsTab } from './settings-tab';
 
-describe('SearchHistoryTab', () => {
-  let component: SearchHistoryTab;
-  let fixture: ComponentFixture<SearchHistoryTab>;
+describe('SettingsTab', () => {
+  let component: SettingsTab;
+  let fixture: ComponentFixture<SettingsTab>;
 
   beforeEach(async () => {
-    fixture = TestBed.createComponent(SearchHistoryTab);
+    fixture = TestBed.createComponent(SettingsTab);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
