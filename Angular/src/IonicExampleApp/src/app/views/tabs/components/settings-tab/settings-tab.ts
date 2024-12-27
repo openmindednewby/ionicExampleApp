@@ -8,7 +8,6 @@ import { Header } from "../header/header";
   templateUrl: 'settings-tab.html',
   styleUrls: ['settings-tab.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [appSignalStore],
   imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent, Header],
 })
 export class SettingsTab {
