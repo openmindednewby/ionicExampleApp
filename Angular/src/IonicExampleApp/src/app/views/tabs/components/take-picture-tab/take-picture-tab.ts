@@ -6,13 +6,14 @@ import { IndexedDbService, ObjectStoreNames } from 'src/app/services/indexed-db/
 import { Photo } from '@capacitor/camera';
 import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 import dataUrlToBlob from 'src/app/utils/mappers/dataUrlToBlob';
+import { Header } from "../header/header";
 
 @Component({
   selector: 'appTakePictureTab',
   templateUrl: 'take-picture-tab.html',
   styleUrls: ['take-picture-tab.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, IonImg, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [CommonModule, IonImg, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent, Header],
 })
 export class TakePictureTab {
   public currentPhoto = signal<Photo | undefined>(undefined);

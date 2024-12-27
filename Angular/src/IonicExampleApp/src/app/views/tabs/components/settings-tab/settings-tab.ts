@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import appSignalStore from 'src/app/store/appSignalStore';
+import { Header } from "../header/header";
 
 @Component({
   selector: 'appSettingsTab',
@@ -8,7 +9,7 @@ import appSignalStore from 'src/app/store/appSignalStore';
   styleUrls: ['settings-tab.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [appSignalStore],
-  imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent, Header],
 })
 export class SettingsTab {
   private readonly store = inject(appSignalStore);

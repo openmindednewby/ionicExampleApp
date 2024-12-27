@@ -7,13 +7,14 @@ import { IndexedDbService, ObjectStoreNames } from 'src/app/services/indexed-db/
 import { CommonModule } from '@angular/common';
 import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 import { FormsModule } from '@angular/forms';
+import { Header } from "../header/header";
 
 @Component({
   selector: 'appSearchPicturesTab',
   templateUrl: 'search-pictures-tab.html',
   styleUrls: ['search-pictures-tab.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, IonList, IonItem, IonInput, IonCard, CommonModule, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [FormsModule, IonList, IonItem, IonInput, IonCard, CommonModule, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent, Header],
 })
 export class SearchPicturesTab {
   public pictureId = signal<number | undefined>(undefined);
