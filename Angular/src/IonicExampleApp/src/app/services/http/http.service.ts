@@ -3,6 +3,7 @@ import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/commo
 import { Observable } from 'rxjs';
 import { Endpoints } from 'src/environments/endpoints';
 import { isNotEmptyArray } from 'src/app/utils/tools/isNotEmptyArray';
+import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 
 interface HttpOptions {
   headers?: HttpHeaders | {
@@ -27,10 +28,9 @@ interface HttpOptions {
 export class HttpService {
   constructor(private http: HttpClient) { }
 
-  public httpGet<Q, R>(endpoint: Endpoints, urlIDs: string[] | undefined, queryParams: Q & { [key: string]: any }): Observable<R> {
+  public httpGet<Q, R>(endpoint: Endpoints, urlIDs: string[] | undefined, queryParams?: Q & { [key: string]: any }): Observable<R> {
     const url = this.buildUrl(endpoint, urlIDs);
-    const params = this.buildQueryParams<Q>(queryParams);
-    const options: HttpOptions = { params };
+    const options = this.buildOptions<Q>(queryParams);
 
     return this.http.get<R>(url, options);
   }
@@ -50,6 +50,14 @@ export class HttpService {
     throw new Error('Method not implemented.');
 
     return this.http.delete<R>(url);
+  }
+
+  private buildOptions<Q>(queryParams?: (Q & { [key: string]: any; })): HttpOptions | undefined {
+    if(!isValueDefined(queryParams)) return undefined;
+
+    const params = this.buildQueryParams<Q>(queryParams!);
+    const options: HttpOptions = { params };
+    return options;
   }
 
   private buildUrl(url: Endpoints,urlIDs: string[] | undefined): string {
