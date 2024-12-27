@@ -9,17 +9,17 @@ export const routes: Routes = [
       {
         path: 'tab1',
         loadComponent: () =>
-          import('../take-picture-tab/take-picture-tab').then((m) => m.TakePictureTab),
+          import('./components/take-picture-tab/take-picture-tab').then((m) => m.TakePictureTab),
       },
       {
         path: 'tab2',
         loadComponent: () =>
-          import('../search-pictures-tab/search-pictures-tab').then((m) => m.SearchPicturesTab),
+          import('./components/search-pictures-tab/search-pictures-tab').then((m) => m.SearchPicturesTab),
       },
       {
         path: 'tab3',
         loadComponent: () =>
-          import('../search-history-tab/search-history-tab').then((m) => m.SearchHistoryTab),
+          import('./components/search-history-tab/search-history-tab').then((m) => m.SearchHistoryTab),
       },
       {
         path: '',

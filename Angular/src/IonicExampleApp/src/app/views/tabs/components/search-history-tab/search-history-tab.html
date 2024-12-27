@@ -1,0 +1,24 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-title [style]="titleColor()">
+      Search History
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Search History </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <h3>Change Tile Color</h3>
+    <ion-button (click)="setHeaderColor('color: black')">Primary</ion-button>
+    <ion-button color="tertiary" (click)="setHeaderColor('color: blue')">Blue</ion-button>
+    <ion-button color="danger" (click)="setHeaderColor('color: red')">Danger</ion-button>
+  </div>
+</ion-content>
+
+
