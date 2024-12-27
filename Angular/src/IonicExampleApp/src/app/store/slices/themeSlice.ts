@@ -6,8 +6,8 @@ export interface ThemeSlice {
   titleColor: string;
 }
 
-function setTitleColor(store: any, titleColor: string) {
-  patchState(store, {
+function setTitleColor(store: Store, titleColor: string) {
+  patchState(store as any, {
     themeSlice: {
       ...store.themeSlice(),
       titleColor,

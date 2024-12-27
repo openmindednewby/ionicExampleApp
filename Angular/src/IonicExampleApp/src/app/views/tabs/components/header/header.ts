@@ -17,4 +17,9 @@ export class Header {
 
   private readonly store = inject(appSignalStore);
   public titleColor = computed(() => this.store.titleColor());
+
+  ngOnChanges(changes: any): void {
+    console.log('Changes detected:', changes);
+    console.log('titleColor:', this.titleColor());
+  }
 }

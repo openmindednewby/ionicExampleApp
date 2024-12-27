@@ -15,8 +15,6 @@ export class SettingsTab {
   private readonly store = inject(appSignalStore);
   public titleColor = computed(() => this.store.titleColor());
 
-  constructor() { }
-
   public setHeaderColor(color: string): void {
     this.store.updateTitleColor(color);
   }
