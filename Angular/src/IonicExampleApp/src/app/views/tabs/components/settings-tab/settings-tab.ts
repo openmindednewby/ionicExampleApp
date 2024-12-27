@@ -12,12 +12,11 @@ import appSignalStore from 'src/app/store/appSignalStore';
 })
 export class SettingsTab {
   private readonly store = inject(appSignalStore);
-  public isInvertedColor = computed(() => this.store.isInvertedColor());
-  public titleColor = signal('color: black');
+  public titleColor = computed(() => this.store.titleColor());
 
   constructor() { }
-  // Method to update the header color
-  setHeaderColor(color: string): void {
-    this.titleColor.set(color);
+
+  public setHeaderColor(color: string): void {
+    this.store.updateTitleColor(color);
   }
 }

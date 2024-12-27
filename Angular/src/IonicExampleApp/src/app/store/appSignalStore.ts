@@ -1,8 +1,6 @@
 import { ThemeSlice } from './slices/themeSlice';
 import { signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { getStoreMethods } from './storeMethods';
-import { STATE_SOURCE } from '@ngrx/signals/src/state-source';
-import { computed } from '@angular/core';
 import { getStoreComputed } from './storeComputed';
 
 interface AppState {
@@ -11,7 +9,7 @@ interface AppState {
 
 const initialState: AppState = {
   themeSlice: {
-    isInvertedColor: false,
+    titleColor: 'color: black'
   },
 }
 

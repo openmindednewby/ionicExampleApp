@@ -2,27 +2,27 @@ import { computed } from '@angular/core';
 import { patchState } from '@ngrx/signals';
 
 export interface ThemeSlice {
-  isInvertedColor: boolean;
+  titleColor: string;
 }
 
-function setIsInvertedColor(store: any, isInvertedColor: boolean) {
+function setTitleColor(store: any, titleColor: string) {
   patchState(store, {
     themeSlice: {
       ...store.themeSlice(),
-      isInvertedColor,
+      titleColor,
     },
   });
 }
 
 export function themeSliceMethods(store: any) {
   return {
-    updateIsInvertedColor: (isInvertedColor: boolean) => setIsInvertedColor(store, isInvertedColor),
+    updateTitleColor: (titleColor: string) => setTitleColor(store, titleColor),
   };
 }
 
 export function themeSliceComputed(slices: any) {
   return {
-    isInvertedColor: computed(() => slices.themeSlice().isInvertedColor),
+    titleColor: computed(() => slices.themeSlice().titleColor),
   };
 }
 
