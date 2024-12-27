@@ -11,5 +11,7 @@ export const environment: Environment = {
       quality: 100
     }
   },
-  endpoints: Endpoints.example
+  endpoints: {
+    GetPicsumRandomPhoto: Endpoints.GetPicsumRandomPhoto,
+  }
 };
