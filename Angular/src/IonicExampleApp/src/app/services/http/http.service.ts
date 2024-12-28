@@ -72,7 +72,6 @@ export class HttpService {
   private buildUrl(url: Endpoints, urlIDs: string[] | undefined): string {
     let resultUrl: string = url;
     if (isNotEmptyArray(urlIDs)) urlIDs!.forEach((id, index) => resultUrl = resultUrl.replace(`{id${index + 1}}`, id));
-    console.log('resultUrl', resultUrl);
     return resultUrl;
   }
 

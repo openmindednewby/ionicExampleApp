@@ -48,7 +48,6 @@ export class TakePictureTab {
   }
 
   public getRandomPicture(): void {
-    console.log('getRandomPicture');
     this.devicePicture.set(undefined);
     this.randomPictureSubject.next(true);
   }
