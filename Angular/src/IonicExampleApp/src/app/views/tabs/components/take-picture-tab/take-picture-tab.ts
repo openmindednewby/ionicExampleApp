@@ -9,7 +9,6 @@ import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 import dataUrlToBlob from 'src/app/utils/mappers/dataUrlToBlob';
 import { Header } from "../header/header";
 import { GetRandomPictureService } from 'src/app/services/http/getRandomPicture/get-random-picture.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'appTakePictureTab',
@@ -20,27 +19,29 @@ import { Subscription } from 'rxjs';
 })
 export class TakePictureTab {
   public randomPicture: Signal<Photo | undefined>;
-  public takenPicture = signal<Photo | undefined>(undefined);
+  public devicePicture = signal<Photo | undefined>(undefined);
+
   public currentPicture = computed(() => {
-    return this.takenPicture() || this.randomPicture();
+    return this.devicePicture() || this.randomPicture();
   });
-  public isStorePictureDisabled = computed(() => !isValueDefined(this.takenPicture()?.dataUrl));
+  public isStorePictureDisabled = computed(() => !isValueDefined(this.devicePicture()?.dataUrl));
 
   constructor(
     private cameraServiceService: CameraServiceService,
     private indexedDbService: IndexedDbService,
     private getRandomPictureService: GetRandomPictureService
   ) {
-      const picture$ = this.getRandomPictureService.picture$;
-      const picture = toSignal(picture$);//manges subscription and un-subscription
-      this.randomPicture = computed(() => {
-        if (isValueDefined(picture())) return { dataUrl: URL.createObjectURL(picture()!) } as Photo;
-        return;
-      });
-   }
+    const picture = toSignal(this.getRandomPictureService.picture$);//toSignal manges subscription and un-subscription
+    this.randomPicture = computed(() => {
+      if (isValueDefined(picture())) return { dataUrl: URL.createObjectURL(picture()!) } as Photo;
+      return;
+    });
+  }
 
   public getRandomPicture(): void {
     try {
+      //this.devicePicture.set(undefined);
+
       this.getRandomPictureService.getPicture();
 
     } catch (error) {
@@ -51,22 +52,20 @@ export class TakePictureTab {
   public async takePicture(): Promise<void> {
     try {
       const photo = await this.cameraServiceService.takePhoto();
-      this.takenPicture.set(photo);
+      this.devicePicture.set(photo);
     } catch (error) {
       console.error('Error taking picture:', error);
     }
   }
 
   public async storePicture(): Promise<void> {
-    if (isValueDefined(this.takenPicture()!.dataUrl)) {
-      try {
-        const blob = dataUrlToBlob(this.takenPicture()!.dataUrl!);
-        await this.indexedDbService.addItem(blob, ObjectStoreNames.Pictures);
-      } catch (error) {
-        console.error('Error storing photo:', error);
-      }
+    if (!isValueDefined(this.devicePicture()!.dataUrl)) return;
+
+    try {
+      const blob = dataUrlToBlob(this.devicePicture()!.dataUrl!);
+      await this.indexedDbService.addItem(blob, ObjectStoreNames.Pictures);
+    } catch (error) {
+      console.error('Error storing photo:', error);
     }
   }
-
-
 }
