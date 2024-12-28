@@ -6,14 +6,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Injectable({
   providedIn: 'root'
 })
-export class GetRandomImageService {
+export class GetRandomPictureService { 
 
-  constructor(private http: HttpService) { }
+  constructor(private httpService: HttpService) { }
 
   public getPicture(width: number = 500, height: number = 500): Signal<Blob | undefined> {
     try {
       const urlIDs = [width.toString(), height.toString()];
-      const picture$ = this.http.httpGet<undefined, Blob>(Endpoints.GetPicsumRandomPhoto, urlIDs)
+      const picture$ = this.httpService.httpGet<undefined, Blob>(Endpoints.GetPicsumRandomPhoto, urlIDs)
 
       return toSignal<Blob>(picture$);
     } catch (error) {

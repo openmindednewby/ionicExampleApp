@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetRandomPictureService } from './getRandomPicture/get-random-picture.service';
+import { GetRandomPictureService } from './get-random-picture.service';
 
 describe('GetRandomPictureService', () => {
   let service: GetRandomPictureService;

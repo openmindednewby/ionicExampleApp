@@ -26,6 +26,7 @@ interface HttpOptions {
   providedIn: 'root'
 })
 export class HttpService {
+
   constructor(private http: HttpClient) { }
 
   public httpGet<Q, R>(endpoint: Endpoints, urlIDs: string[] | undefined, queryParams?: Q & { [key: string]: any }): Observable<R> {
