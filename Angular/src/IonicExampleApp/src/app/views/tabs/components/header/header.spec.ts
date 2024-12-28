@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SearchPicturesTab } from './header';
+import { Header } from './header';
 
 describe('SearchPicturesTab', () => {
-  let component: SearchPicturesTab;
-  let fixture: ComponentFixture<SearchPicturesTab>;
+  let component: Header;
+  let fixture: ComponentFixture<Header>;
 
   beforeEach(async () => {
-    fixture = TestBed.createComponent(SearchPicturesTab);
+    fixture = TestBed.createComponent(Header);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
