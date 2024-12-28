@@ -18,15 +18,13 @@ import { Header } from "../header/header";
 })
 export class SearchPicturesTab {
   public pictureId = signal<number | undefined>(undefined);
-  private currentPhoto = signal<Blob | undefined>(undefined);
   public photoURL = computed(() => this.generatePhotoURL());
   public showCard = computed(() => isValueDefined(this.photoURL()));
   public isGetImageDisabled = computed(() => !isValueDefined(this.pictureId()));
 
+  private currentPhoto = signal<Blob | undefined>(undefined);
 
-  constructor(
-    private indexedDbService: IndexedDbService,
-  ) { }
+  constructor(private indexedDbService: IndexedDbService) { }
 
   public onInputIdChange(value: number): void {
     this.pictureId.set(value);
