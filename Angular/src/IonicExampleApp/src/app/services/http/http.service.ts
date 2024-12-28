@@ -29,6 +29,14 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
+
+  public httpGetBlob<Q>(endpoint: Endpoints, urlIDs: string[] | undefined, queryParams?: Q & { [key: string]: any }): Observable<Blob> {
+    const url = this.buildUrl(endpoint, urlIDs);
+    const options = this.buildOptions<Q>(queryParams);
+
+    return this.http.get(url, { ...options, responseType: 'blob' });
+  }
+
   public httpGet<Q, R>(endpoint: Endpoints, urlIDs: string[] | undefined, queryParams?: Q & { [key: string]: any }): Observable<R> {
     const url = this.buildUrl(endpoint, urlIDs);
     const options = this.buildOptions<Q>(queryParams);
@@ -57,14 +65,14 @@ export class HttpService {
     if(!isValueDefined(queryParams)) return undefined;
 
     const params = this.buildQueryParams<Q>(queryParams!);
-    const options: HttpOptions = { params };
+    const options: HttpOptions = { params, responseType: 'json' };
     return options;
   }
 
-  private buildUrl(url: Endpoints,urlIDs: string[] | undefined): string {
-    const resultUrl = url;
-    if (isNotEmptyArray(urlIDs)) urlIDs!.forEach((id, index) => resultUrl.replace(`{id${index}}`, id));
-
+  private buildUrl(url: Endpoints, urlIDs: string[] | undefined): string {
+    let resultUrl: string = url;
+    if (isNotEmptyArray(urlIDs)) urlIDs!.forEach((id, index) => resultUrl = resultUrl.replace(`{id${index + 1}}`, id));
+    console.log('resultUrl', resultUrl);
     return resultUrl;
   }
 

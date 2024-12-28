@@ -1,29 +1,24 @@
-import { Injectable, signal, Signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Endpoints } from 'src/environments/endpoints';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, map, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetRandomPictureService {
-  private pictureSubject = new BehaviorSubject<Blob | undefined>(undefined);
-  public picture$ = this.pictureSubject.asObservable();
-
   constructor(private httpService: HttpService) { }
 
-  public getPicture(width: number = 500, height: number = 500): void {
+  public getPicture(width: number = 500, height: number = 500): Observable<Blob> {
     try {
       const urlIDs = [width.toString(), height.toString()];
-      this.httpService.httpGet<undefined, Blob>(Endpoints.GetPicsumRandomPhoto, urlIDs).pipe(
-        map(response => {
-          this.pictureSubject.next(response);
-          return response;
-        }));
+      console.log('Getting random image with width: ' + width + ' and height: ' + height, urlIDs);
+      return this.httpService.httpGetBlob<undefined>(Endpoints.GetPicsumRandomPhoto, urlIDs);
 
     } catch (error) {
       console.log('Failed to get random image: ' + error);
+      throw new Error("Failed to get random image: " + error);
+
     }
   }
 }

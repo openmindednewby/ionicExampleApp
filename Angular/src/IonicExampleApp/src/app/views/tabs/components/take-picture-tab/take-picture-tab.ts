@@ -9,6 +9,7 @@ import { isValueDefined } from 'src/app/utils/tools/isValueDefined';
 import dataUrlToBlob from 'src/app/utils/mappers/dataUrlToBlob';
 import { Header } from "../header/header";
 import { GetRandomPictureService } from 'src/app/services/http/getRandomPicture/get-random-picture.service';
+import { BehaviorSubject, filter, switchMap } from 'rxjs';
 
 @Component({
   selector: 'appTakePictureTab',
@@ -18,20 +19,28 @@ import { GetRandomPictureService } from 'src/app/services/http/getRandomPicture/
   imports: [CommonModule, IonImg, IonButton, IonFab, IonIcon, IonHeader, IonToolbar, IonTitle, IonContent, Header],
 })
 export class TakePictureTab {
+  private randomPictureSubject = new BehaviorSubject<boolean>(false);
+  private randomPicture$ = this.randomPictureSubject.pipe(
+    filter((shouldGetPicture) => shouldGetPicture),
+    switchMap(() => this.getRandomPictureService.getPicture()));
+
   public randomPicture: Signal<Photo | undefined>;
   public devicePicture = signal<Photo | undefined>(undefined);
 
   public currentPicture = computed(() => {
     return this.devicePicture() || this.randomPicture();
   });
-  public isStorePictureDisabled = computed(() => !isValueDefined(this.devicePicture()?.dataUrl));
+  public isStorePictureDisabled = computed(() =>
+    !isValueDefined(this.devicePicture()?.dataUrl) &&
+    !isValueDefined(this.randomPicture()?.dataUrl)
+  );
 
   constructor(
     private cameraServiceService: CameraServiceService,
     private indexedDbService: IndexedDbService,
     private getRandomPictureService: GetRandomPictureService
   ) {
-    const picture = toSignal(this.getRandomPictureService.picture$);//toSignal manges subscription and un-subscription
+    const picture = toSignal(this.randomPicture$); //toSignal manges subscription and un-subscription
     this.randomPicture = computed(() => {
       if (isValueDefined(picture())) return { dataUrl: URL.createObjectURL(picture()!) } as Photo;
       return;
@@ -39,14 +48,8 @@ export class TakePictureTab {
   }
 
   public getRandomPicture(): void {
-    try {
-      //this.devicePicture.set(undefined);
-
-      this.getRandomPictureService.getPicture();
-
-    } catch (error) {
-      console.error('Error taking picture:', error);
-    }
+    console.log('getRandomPicture');
+    this.randomPictureSubject.next(true);
   }
 
   public async takePicture(): Promise<void> {
