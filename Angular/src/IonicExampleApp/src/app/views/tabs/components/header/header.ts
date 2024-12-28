@@ -13,7 +13,7 @@ import appSignalStore from 'src/app/store/appSignalStore';
   imports: [FormsModule, CommonModule, IonHeader, IonToolbar, IonTitle],
 })
 export class Header {
-  public title = input<string>('');
+  public title = input<string>();
 
   private readonly store = inject(appSignalStore);
   public titleColor = computed(() => {
