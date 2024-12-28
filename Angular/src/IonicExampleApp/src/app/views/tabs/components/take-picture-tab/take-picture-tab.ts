@@ -24,7 +24,7 @@ export class TakePictureTab {
     filter((shouldGetPicture) => shouldGetPicture),
     switchMap(() => this.getRandomPictureService.getPicture()));
 
-  public randomPicture: Signal<Photo | undefined>;
+  public randomPicture!: Signal<Photo | undefined>;
   public devicePicture = signal<Photo | undefined>(undefined);
 
   public currentPicture = computed(() => {
@@ -40,11 +40,7 @@ export class TakePictureTab {
     private indexedDbService: IndexedDbService,
     private getRandomPictureService: GetRandomPictureService
   ) {
-    const picture = toSignal(this.randomPicture$); //toSignal manges subscription and un-subscription
-    this.randomPicture = computed(() => {
-      if (isValueDefined(picture())) return { dataUrl: URL.createObjectURL(picture()!) } as Photo;
-      return;
-    });
+    this.initializeRandomPictureSignal();
   }
 
   public getRandomPicture(): void {
@@ -70,5 +66,13 @@ export class TakePictureTab {
     } catch (error) {
       console.error('Error storing photo:', error);
     }
+  }
+
+  private initializeRandomPictureSignal() {
+    const picture = toSignal(this.randomPicture$); //toSignal manges subscription and un-subscription
+    this.randomPicture = computed(() => {
+      if (isValueDefined(picture())) return { dataUrl: URL.createObjectURL(picture()!) } as Photo;
+      return;
+    });
   }
 }
