@@ -1,15 +1,20 @@
 # Ionic Example App
 
+Simple Ionic PWA example App using Angular 19. This could serve as an example starting project.
+
+## Featues
+
+- indexedDB
+- NGrX signal store
+- RxJS
+
 ## Run In Dev Mode
 
 `ionic serve`
 
-## Todo
+## Not Implemented Yet
 
-- Add NGrX signal store
-  - optional add component store maybe
-- Make use of RXjs for http calls
 - Add translations (localization)
 - Add BE with websockets for logs
-- Add IndexDB for storing the files
-- Add offline functionality
+- fix unit tests
+- Add acceptance tests
