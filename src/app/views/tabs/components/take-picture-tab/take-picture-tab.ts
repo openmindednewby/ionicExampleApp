@@ -24,8 +24,9 @@ export class TakePictureTab {
     filter((shouldGetPicture) => shouldGetPicture),
     switchMap(() => this.getRandomPictureService.getPicture()));
 
-  public randomPicture!: Signal<Photo | undefined>;
-  public devicePicture = signal<Photo | undefined>(undefined);
+    public randomPictureBlob!: Signal<Blob | undefined>;
+    public randomPicture!: Signal<Photo | undefined>;
+    public devicePicture = signal<Photo | undefined>(undefined);
 
   public currentPicture = computed(() => {
     return this.devicePicture() || this.randomPicture();
@@ -58,20 +59,38 @@ export class TakePictureTab {
   }
 
   public async storePicture(): Promise<void> {
-    if (!isValueDefined(this.devicePicture()!.dataUrl)) return;
+    const dataURL = this.devicePicture()?.dataUrl;
+    if(isValueDefined(dataURL)) {
+      await this.storeDataURLPicture(dataURL!);
+      return;
+    }
 
+    const blob = this.randomPictureBlob();
+    if(isValueDefined(blob)) await this.storeBlobPicture(blob!);
+  }
+
+  private async storeDataURLPicture(dataURL: string): Promise<void> {
     try {
-      const blob = dataUrlToBlob(this.devicePicture()!.dataUrl!);
+      const blob = dataUrlToBlob(dataURL);
       await this.indexedDbService.addItem(blob, ObjectStoreNames.Pictures);
     } catch (error) {
       console.error('Error storing photo:', error);
     }
   }
 
-  private initializeRandomPictureSignal() {
-    const picture = toSignal(this.randomPicture$); //toSignal manges subscription and un-subscription
+  private async storeBlobPicture(blob: Blob): Promise<void> {
+    try {
+      await this.indexedDbService.addItem(blob, ObjectStoreNames.Pictures);
+    } catch (error) {
+      console.error('Error storing photo:', error);
+    }
+  }
+
+
+  private initializeRandomPictureSignal(): void {
+    this.randomPictureBlob = toSignal(this.randomPicture$); //toSignal manges subscription and un-subscription
     this.randomPicture = computed(() => {
-      if (isValueDefined(picture())) return { dataUrl: URL.createObjectURL(picture()!) } as Photo;
+      if (isValueDefined(this.randomPictureBlob())) return { dataUrl: URL.createObjectURL(this.randomPictureBlob()!) } as Photo;
       return;
     });
   }
