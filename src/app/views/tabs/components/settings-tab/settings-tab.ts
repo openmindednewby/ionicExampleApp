@@ -11,8 +11,12 @@ import { Header } from "../header/header";
   imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent, Header],
 })
 export class SettingsTab {
-  private readonly store = inject(appSignalStore);
+  private readonly store;
   public titleColor = computed(() => this.store.titleColor());
+
+  constructor() {
+    this.store = inject(appSignalStore);
+  }
 
   public setHeaderColor(color: string): void {
     this.store.updateTitleColor(color);
