@@ -1,12 +1,14 @@
 name: Build Ionic Angular App
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+run-name: ${{ github.actor }} build Ionic Angular App
+on: [push]
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   build:
@@ -29,7 +31,7 @@ jobs:
 
       - name: Build the app
         run: ionic build
-      
+
       - name: Run unit tests
         run: npm test
 
