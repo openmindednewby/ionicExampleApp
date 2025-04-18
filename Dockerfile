@@ -16,4 +16,4 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # Stage 3 docker build -t ionic-example-app .
-# Stage 4 docker run -dp 4299:80 --name ionicExampleApp -network=internal-docker --ip=172.18.0.3 ionic-example-app
+# Stage 4 docker run -dp 4299:80 --name ionicExampleApp -network=internal-docker --ip=172.18.0.2 ionic-example-app
