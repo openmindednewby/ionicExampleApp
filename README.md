@@ -18,3 +18,4 @@ Simple Ionic PWA example App using Angular 19. This could serve as an example st
 - Add BE with websockets for logs
 - fix unit tests
 - Add acceptance tests (end to end)
+- Accessibility decorators
