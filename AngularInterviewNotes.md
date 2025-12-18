@@ -258,6 +258,14 @@ Hot vs Cold Observables
 - Cold Observables start emitting when the subscription starts
 - Hot Observables are always being updated with new values,
 
+| Feature             | Cold        | Hot                  |
+| ------------------- | ----------- | -------------------- |
+| Starts on subscribe | ✅           | ❌                 |
+| Shared execution    | ❌           | ✅                 |
+| Late subscribers    | Restart     | Miss previous values |
+| Examples            | HTTP, timer | Subject, events      |
+
+
 ## Signals
 
 - Signals are ideal for handling synchronous state changes, while observables excel in managing asynchronous events
